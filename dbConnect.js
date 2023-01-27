@@ -9,7 +9,7 @@ const dbConnect = () => {
 
     mongoose.connect(process.env.MONGO_URL)
         .then(() => {
-            console.log("DB connected Successfully TO MongoDB Database....!")
+            // console.log("DB connected Successfully TO MongoDB Database....!")
         })
         .catch((err) => {
             console.log(err)
