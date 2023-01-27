@@ -1,9 +1,8 @@
 const dotenv = require('dotenv');
-const express = require('express');
-const dbConnect = require("./dbConnect");
+const dbConnect = require("./config/dbConnect");
 const Account = require("./models/Account")
-const cors = require("cors");
 const readline = require('readline');
+
 //dotenv
 dotenv.config();
 
@@ -29,8 +28,14 @@ function handleCommand(line) {
     const parts = line.split(' ');
     const command = parts[0];
     const code = parts[1];
-    const name = parts[2];
-    const amount = parts[3];
+    let name; let amount;
+    if (command === 'CREATE') {
+        name = parts[2];
+    } else{
+        amount = parts[2];
+    }
+
+    
 
     switch (command) {
         case 'CREATE':
@@ -82,17 +87,16 @@ function handleCommand(line) {
                 } else {
                     console.log(`balance ${account} from account ${code}.`)
                 }
-            
+
             });
             break;
 
-            default:
-            console.log('Invalid command.');
-        }
+        default:
+            console.log('Invalid command....');
     }
+}
 
 
 
 
-
-
+add
