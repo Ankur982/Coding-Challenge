@@ -10,7 +10,9 @@ dotenv.config();
 dbConnect();
 
 
-console.log('Welcome to the CLI Bank Application');
+console.log('*************Welcome to the CLI Bank Application*************');
+
+//creating readline of cli
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -28,14 +30,14 @@ function handleCommand(line) {
     const parts = line.split(' ');
     const command = parts[0];
     const code = parts[1];
-    let name; let amount;
+    let name;
+    let amount;
+
     if (command === 'CREATE') {
         name = parts[2];
-    } else{
+    } else {
         amount = parts[2];
     }
-
-    
 
     switch (command) {
         case 'CREATE':
@@ -61,6 +63,7 @@ function handleCommand(line) {
             break;
         case 'WITHDRAW':
             // Withdraw amount from account
+
             Account.findOne({ code }, (err, account) => {
                 if (err) {
                     console.log(`Error withdrawing amount: ${err}`);
@@ -81,11 +84,12 @@ function handleCommand(line) {
             break;
         case 'BALANCE':
             // Show account balance
+            
             Account.findOne({ code }, (err, account) => {
                 if (err) {
                     console.log(`Error showing balance: ${err}`);
                 } else {
-                    console.log(`balance ${account} from account ${code}.`)
+                    console.log(`${code}  ${account.balance}`)
                 }
 
             });
@@ -97,6 +101,3 @@ function handleCommand(line) {
 }
 
 
-
-
-add
